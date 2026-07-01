@@ -1,58 +1,27 @@
 package org.qxteam.madartask
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.ui.Modifier
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import org.koin.androidx.compose.koinViewModel
-import org.qxteam.madartask.core.navigation.Screen
-import org.qxteam.madartask.feature.display.DisplayScreen
-import org.qxteam.madartask.feature.display.DisplayViewModel
-import org.qxteam.madartask.feature.input.InputScreen
-import org.qxteam.madartask.feature.input.InputViewModel
-import org.qxteam.madartask.ui.theme.MadarTaskTheme
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import org.qxteam.madartask.databinding.ActivityMainBinding
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContent {
-            MadarTaskTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    val navController = rememberNavController()
-                    NavHost(
-                        navController = navController,
-                        startDestination = Screen.Input.route,
-                        modifier = Modifier.padding(innerPadding)
-                    ) {
-                        composable(Screen.Input.route) {
-                            val viewModel: InputViewModel = koinViewModel()
-                            InputScreen(
-                                viewModel = viewModel,
-                                onNavigateToDisplay = {
-                                    navController.navigate(Screen.Display.route)
-                                }
-                            )
-                        }
-                        composable(Screen.Display.route) {
-                            val viewModel: DisplayViewModel = koinViewModel()
-                            DisplayScreen(
-                                viewModel = viewModel,
-                                onNavigateBack = {
-                                    navController.popBackStack()
-                                }
-                            )
-                        }
-                    }
-                }
-            }
+        
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
         }
     }
 }
