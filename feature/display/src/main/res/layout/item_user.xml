@@ -50,51 +50,31 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <LinearLayout
+
+            <TextView
+                android:id="@+id/tvUserJob"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginStart="4dp"
+                android:drawablePadding="8dp"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:textColor="?android:attr/textColorSecondary"
+                android:textSize="14sp"
+                app:drawableStartCompat="@drawable/ic_person"
+                app:drawableTint="?attr/colorPrimary" />
 
-                <ImageView
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:src="@drawable/ic_person"
-                    app:tint="?attr/colorPrimary" />
-
-                <TextView
-                    android:id="@+id/tvUserJob"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:textColor="?android:attr/textColorSecondary"
-                    android:textSize="14sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
+            <TextView
+                android:id="@+id/tvUserAge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginStart="4dp"
+                android:drawablePadding="8dp"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:textColor="?android:attr/textColorSecondary"
+                android:textSize="14sp"
+                app:drawableStartCompat="@drawable/ic_info"
+                app:drawableTint="?attr/colorPrimary" />
 
-                <ImageView
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:src="@drawable/ic_info"
-                    app:tint="?attr/colorSecondary" />
-
-                <TextView
-                    android:id="@+id/tvUserAge"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:textColor="?android:attr/textColorSecondary"
-                    android:textSize="14sp" />
-
-            </LinearLayout>
 
         </LinearLayout>
 
@@ -119,6 +99,7 @@
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:layout_marginTop="4dp"
+                android:contentDescription="@null"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:src="@drawable/ic_delete"
                 app:tint="?attr/colorError" />
